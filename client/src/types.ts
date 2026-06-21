@@ -5,6 +5,12 @@ export interface Subscription {
   status: 'Active' | 'Cancelled';
 }
 
+export interface Payment {
+  id: string;
+  amount: number;
+  date: string;
+}
+
 export interface User {
   id: string;
   name: string;
@@ -12,4 +18,5 @@ export interface User {
   email: string;
   accountStatus: 'Overdue' | 'Active' | 'Inactive';
   subscriptions: Subscription[];
+  payments: Payment[];
 }
