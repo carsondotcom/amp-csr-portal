@@ -1,0 +1,38 @@
+### List users
+GET http://localhost:3000/api/users
+
+### Search
+GET http://localhost:3000/api/users?q=alice
+
+### Get user by ID
+GET http://localhost:3000/api/users/1
+
+### Update user
+PATCH http://localhost:3000/api/users/1
+Content-Type: application/json
+
+{"accountStatus": "Overdue", "name": "Carson Jones"}
+
+### Add subscription
+POST http://localhost:3000/api/users/1/subscriptions
+Content-Type: application/json
+
+{"licensePlate": "NEW-999", "type": "Pro"}
+
+### Transfer subscription (change license plate)
+PATCH http://localhost:3000/api/users/1/subscriptions/s1
+Content-Type: application/json
+
+{"licensePlate": "TRF-001"}
+
+### Change subscription type
+PATCH http://localhost:3000/api/users/1/subscriptions/s1
+Content-Type: application/json
+
+{"type": "Deluxe"}
+
+### Cancel subscription
+PATCH http://localhost:3000/api/users/1/subscriptions/s1
+Content-Type: application/json
+
+{"status": "Cancelled"}
