@@ -1,24 +1,33 @@
-import { useState } from 'react';
-import { Alert, Box, Button, MenuItem, Stack, TextField, Typography } from '@mui/material';
-import { useAddSubscriptionMutation } from '../../app/api';
-import type { Subscription } from '../../types';
+import { useState } from "react";
+import {
+  Alert,
+  Box,
+  Button,
+  MenuItem,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useAddSubscriptionMutation } from "../../app/api";
+import type { Subscription } from "../../types";
 
 interface Props {
   userId: string;
 }
 
-const subscriptionTypes: Subscription['type'][] = ['Pro', 'Standard', 'Deluxe'];
+const subscriptionTypes: Subscription["type"][] = ["Pro", "Standard", "Deluxe"];
 
 export function AddSubscriptionForm({ userId }: Props) {
-  const [licensePlate, setLicensePlate] = useState('');
-  const [type, setType] = useState<Subscription['type']>('Standard');
+  const [licensePlate, setLicensePlate] = useState("");
+  const [type, setType] = useState<Subscription["type"]>("Standard");
 
-  const [addSubscription, { isLoading, isError }] = useAddSubscriptionMutation();
+  const [addSubscription, { isLoading, isError }] =
+    useAddSubscriptionMutation();
 
   async function handleAdd() {
     await addSubscription({ userId, body: { licensePlate, type } });
-    setLicensePlate('');
-    setType('Standard');
+    setLicensePlate("");
+    setType("Standard");
   }
 
   return (
@@ -26,7 +35,10 @@ export function AddSubscriptionForm({ userId }: Props) {
       <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
         Add Subscription
       </Typography>
-      <Stack direction="row" spacing={2} alignItems="center" flexWrap="wrap">
+      <Stack
+        direction="row"
+        sx={{ spacing: 2, alignItems: "center", flexWrap: "wrap" }}
+      >
         <TextField
           label="License Plate"
           value={licensePlate}
@@ -37,12 +49,14 @@ export function AddSubscriptionForm({ userId }: Props) {
           select
           label="Type"
           value={type}
-          onChange={(e) => setType(e.target.value as Subscription['type'])}
+          onChange={(e) => setType(e.target.value as Subscription["type"])}
           size="small"
           sx={{ minWidth: 130 }}
         >
           {subscriptionTypes.map((t) => (
-            <MenuItem key={t} value={t}>{t}</MenuItem>
+            <MenuItem key={t} value={t}>
+              {t}
+            </MenuItem>
           ))}
         </TextField>
         <Button
@@ -50,10 +64,14 @@ export function AddSubscriptionForm({ userId }: Props) {
           onClick={handleAdd}
           disabled={!licensePlate || isLoading}
         >
-          {isLoading ? 'Adding...' : 'Add'}
+          {isLoading ? "Adding..." : "Add"}
         </Button>
       </Stack>
-      {isError && <Alert severity="error" sx={{ mt: 1 }}>Failed to add subscription.</Alert>}
+      {isError && (
+        <Alert severity="error" sx={{ mt: 1 }}>
+          Failed to add subscription.
+        </Alert>
+      )}
     </Box>
   );
 }
