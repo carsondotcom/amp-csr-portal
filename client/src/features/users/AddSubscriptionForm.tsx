@@ -37,7 +37,8 @@ export function AddSubscriptionForm({ userId }: Props) {
       </Typography>
       <Stack
         direction="row"
-        sx={{ spacing: 2, alignItems: "center", flexWrap: "wrap" }}
+        spacing={2}
+        sx={{ alignItems: "center", flexWrap: "wrap" }}
       >
         <TextField
           label="License Plate"

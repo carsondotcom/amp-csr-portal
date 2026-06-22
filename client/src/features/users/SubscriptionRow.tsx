@@ -55,7 +55,8 @@ export function SubscriptionRow({ userId, subscription }: Props) {
     <Paper variant="outlined" sx={{ p: 2, opacity: isCancelled ? 0.6 : 1 }}>
       <Stack
         direction="row"
-        sx={{ spacing: 2, alignItems: "center", flexWrap: "wrap" }}
+        spacing={2}
+        sx={{ alignItems: "center", flexWrap: "wrap" }}
       >
         <TextField
           label="License Plate"
